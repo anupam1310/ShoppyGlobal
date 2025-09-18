@@ -1,20 +1,29 @@
-
-import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-    const response = await fetch('https://dummyjson.com/products');
-    if (!response.ok) throw new Error('Failed to fetch products');
+    const response = await fetch('https://fakestoreapi.com/products');
+    if (!response.ok) {
+        throw new Error('Failed to fetch products from Fake Store API');
+    }
     const data = await response.json();
-    return data.products;
-});
 
+    return data.map(product => ({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        description: product.description,
+        category: product.category,
+        thumbnail: product.image, // 'image' field from the new API
+        rating: product.rating.rate, // 'rating.rate' from the new API
+        brand: product.category, // Using 'category' as a fallback for 'brand'
+    }));
+});
 
 const productSlice = createSlice({
     name: 'products',
     initialState: {
         items: [],
-        status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+        status: 'idle',
         error: null,
         searchTerm: '',
     },
@@ -39,6 +48,6 @@ const productSlice = createSlice({
     },
 });
 
-export default productSlice.reducer;
-
 export const { setSearchTerm } = productSlice.actions;
+
+export default productSlice.reducer;
