@@ -28,7 +28,7 @@ const ProductListComponent = ({ setRoute }) => {
                     placeholder="Search for products..." 
                     value={searchTerm} 
                     onChange={handleSearchChange} 
-                    className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow" 
+                    className="w-full p-3 bg-secondary border border-accent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition-shadow" 
                 />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">

@@ -44,15 +44,15 @@ const App = () => {
     
     return (
         <Provider store={store}>
-            <div className="bg-slate-50 min-h-screen font-sans">
+            <div className="bg-primary min-h-screen font-sans">
                 <HeaderComponent setRoute={(newRoute) => window.location.hash = `#/${newRoute.name === 'home' ? '' : newRoute.name}`} />
                 <main>
                     <Suspense fallback={<div className="text-center py-10">Loading page...</div>}>
                         {renderPage()}
                     </Suspense>
                 </main>
-                <footer className="bg-slate-800 mt-12 py-8">
-                    <div className="container mx-auto px-6 text-center text-slate-400">
+                <footer className="bg-secondary mt-12 py-8">
+                    <div className="container mx-auto px-6 text-center text-text-secondary">
                         <p>&copy; 2024 ShoppyGlobe. All Rights Reserved.</p>
                     </div>
                 </footer>
