@@ -1,8 +1,7 @@
 import ProductItemComponent from "./ProductIteam";
-import { Provider, useSelector, useDispatch } from 'react-redux';
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 import { fetchProducts, setSearchTerm } from '../store/productslice';
-
 
 const ProductListComponent = ({ setRoute }) => {
     const dispatch = useDispatch();
@@ -23,8 +22,16 @@ const ProductListComponent = ({ setRoute }) => {
 
     return (
         <div className="container mx-auto px-6 py-8">
-            <div className="mb-8"><input type="text" placeholder="Search for products..." value={searchTerm} onChange={handleSearchChange} className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="mb-8">
+                <input 
+                    type="text" 
+                    placeholder="Search for products..." 
+                    value={searchTerm} 
+                    onChange={handleSearchChange} 
+                    className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow" 
+                />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {filteredProducts.map(product => <ProductItemComponent key={product.id} product={product} setRoute={setRoute} />)}
             </div>
         </div>
